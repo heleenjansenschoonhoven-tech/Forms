@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aanmelden – Informatieavond | Heleen Events</title>
+
+  <!-- ============================================================
+       STAP 1: Plak hier het TRACKING SCRIPT uit de Form Handler
+       (Marketing app > Content > Form Handler > Code Snippet)
+       ============================================================ -->
+
+  <style>
+    :root {
+      --primary: #5b3cc4;
+      --primary-dark: #45299e;
+      --accent: #ffb547;
+      --bg: #f6f4fb;
+      --text: #1f1b2e;
+      --muted: #6b6680;
+      --border: #ddd8ec;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand { font-weight: 700; font-size: 1.15rem; letter-spacing: .3px; }
+    .brand span { color: var(--primary); }
+    main { max-width: 640px; margin: 40px auto; padding: 0 16px; }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(40, 20, 90, .08);
+      overflow: hidden;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      padding: 28px 32px;
+    }
+    .hero h1 { margin: 0 0 8px; font-size: 1.6rem; }
+    .hero p { margin: 0; opacity: .9; }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 8px 20px;
+      margin-top: 16px; font-size: .9rem;
+    }
+    .meta div::before { content: "• "; color: var(--accent); }
+    form { padding: 28px 32px 32px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { margin-bottom: 18px; }
+    label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+    .req { color: #c0392b; }
+    input[type=text], input[type=email], input[type=tel], select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: inherit;
+      background: #fff;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(91, 60, 196, .15);
+    }
+    .options { display: flex; gap: 12px; }
+    .option {
+      flex: 1;
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .option:has(input:checked) { border-color: var(--primary); background: #f1edfc; }
+    .hint { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+    .consent {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: .88rem; color: var(--muted);
+      margin: 8px 0 22px;
+    }
+    .consent input { margin-top: 4px; }
+    button {
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: var(--primary-dark); }
+    #lidnummer-veld { display: none; }
+    footer { text-align: center; font-size: .8rem; color: var(--muted); padding: 24px; }
+    @media (max-width: 560px) { .row { grid-template-columns: 1fr; } form, .hero { padding: 24px 20px; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- Fictief logo -->
+    <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="10" fill="#5b3cc4"/>
+      <path d="M12 10v20M28 10v20M12 20h16" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="31" cy="9" r="4" fill="#ffb547"/>
+    </svg>
+    <div class="brand">Heleen <span>Events</span></div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="hero">
+        <h1>Informatieavond: jouw rechten op het werk</h1>
+        <p>Praat mee over loon, contracten, ziekte en huisvesting. Iedereen is welkom en deelname is gratis.</p>
+        <div class="meta">
+          <div>Donderdag 10 december 2026</div>
+          <div>19:00 – 21:00</div>
+          <div>Utrecht of online</div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           STAP 2: Vervang de <form>-tag hieronder door de FORM ATTRIBUTES
+           uit de Form Handler (Code Snippet > Form Attributes).
+           De name-attributen moeten gelijk zijn aan de External Field Names.
+           ============================================================ -->
+      <form id="aanmeldformulier" method="post" action="#">
+
+        <!-- Verborgen velden -->
+        <input type="hidden" name="evenement" value="INFO-2026-12-UTR">
+        <input type="hidden" name="utm_source" id="utm_source" value="direct">
+
+        <div class="row">
+          <div class="field">
+            <label for="firstname">Voornaam <span class="req">*</span></label>
+            <input type="text" id="firstname" name="firstname" required>
+          </div>
+          <div class="field">
+            <label for="lastname">Achternaam <span class="req">*</span></label>
+            <input type="text" id="lastname" name="lastname" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="email">E-mailadres <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Telefoonnummer</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Hoe neem je deel? <span class="req">*</span></label>
+          <div class="options">
+            <label class="option"><input type="radio" name="deelname" value="Fysiek" required> Op locatie</label>
+            <label class="option"><input type="radio" name="deelname" value="Online"> Online</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="werkgever">Werkgever</label>
+          <input type="text" id="werkgever" name="werkgever">
+        </div>
+
+        <div class="field">
+          <label for="onderwerp">Waar wil je vooral meer over weten?</label>
+          <select id="onderwerp" name="onderwerp">
+            <option value="">Maak een keuze</option>
+            <option value="Loon">Loon</option>
+            <option value="Contract">Contract</option>
+            <option value="Ziekte">Ziekte</option>
+            <option value="Huisvesting">Huisvesting</option>
+          </select>
+          <div class="hint">Waarden moeten gelijk zijn aan de picklistwaarden in Salesforce.</div>
+        </div>
+
+        <div class="field">
+          <label>Ben je lid?</label>
+          <div class="options">
+            <label class="option"><input type="radio" name="lid" value="true"> Ja</label>
+            <label class="option"><input type="radio" name="lid" value="false" checked> Nee</label>
+          </div>
+        </div>
+
+        <div class="field" id="lidnummer-veld">
+          <label for="lidnummer">Lidnummer</label>
+          <input type="text" id="lidnummer" name="lidnummer">
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="consent_email" value="true">
+          <span>Ja, ik wil per e-mail op de hoogte blijven van evenementen en nieuws. Je kunt je altijd weer afmelden.</span>
+        </label>
+
+        <button type="submit">Aanmelden</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>Heleen Events is een fictieve organisatie, gemaakt voor een Marketing Cloud PoC.</footer>
+
+  <script>
+    // Lidnummer alleen tonen als iemand lid is
+    document.querySelectorAll('input[name="lid"]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        var isLid = document.querySelector('input[name="lid"]:checked').value === 'true';
+        document.getElementById('lidnummer-veld').style.display = isLid ? 'block' : 'none';
+        if (!isLid) document.getElementById('lidnummer').value = '';
+      });
+    });
+
+    // utm_source uit de URL overnemen (fallback: "direct")
+    var src = new URLSearchParams(window.location.search).get('utm_source');
+    if (src) document.getElementById('utm_source').value = src;
+  </script>
+</body>
+</html>
